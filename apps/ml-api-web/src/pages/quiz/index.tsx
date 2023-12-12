@@ -14,6 +14,7 @@ import { arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
 import './quiz.css';
 import LoadingPage from '../loading/LoadingPage';
 import useQuizData from '../../hooks/useQuizData';
+import { API_URL } from "../../config";
 
 interface Question {
   questionName: string;
@@ -164,7 +165,7 @@ const TakeQuiz: React.FC<TakeQuizProps> = ({ text }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState('a');
   const { data, error, isLoading } = useQuizData(
-    'http://localhost:3000/api/v1/create-quiz',
+    API_URL + '/v1/create-quiz',
     text
   );
 

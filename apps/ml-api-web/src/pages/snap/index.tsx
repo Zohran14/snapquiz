@@ -3,6 +3,8 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 import { OcrResult } from '@snapquiz/types';
 import axios from 'axios';
 import { cameraSharp } from 'ionicons/icons';
+import { API_URL } from "../../config";
+
 import {
   IonAlert,
   IonButton,
@@ -134,7 +136,7 @@ const Snap = () => {
     try {
       console.log(path);
 
-      const res = await axios.post(`http://localhost:3000/api/v1/ocr-base64`, {
+      const res = await axios.post(API_URL + "/v1/ocr-base64", {
         data: path,
       });
       const response: OcrResult = res.data;
