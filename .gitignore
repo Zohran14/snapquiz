@@ -47,3 +47,5 @@ Thumbs.db
 *.log
 logs
 .env
+.key
+.key.base64

@@ -123,11 +123,14 @@ export class AppService implements OnModuleInit {
     }
 
     async onModuleInit(): Promise<void> {
+        const decodedBuffer = Buffer.from(this.GOOGLE_PRIVATE_KEY, 'base64');
+        const decodedString = decodedBuffer.toString('utf-8');
+
         //load the NLP model
         const client = new ImageAnnotatorClient({
             credentials: {
                 client_email: this.GOOGLE_CLIENT_EMAIL,
-                private_key: this.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join('\n'),
+                private_key: decodedString,
             },
         });
 
