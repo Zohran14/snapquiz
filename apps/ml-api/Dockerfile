@@ -1,4 +1,4 @@
-FROM node:20.9-bullseye-slim AS base
+FROM node:20.9-alpine AS base
 ARG API_PORT=3000
 EXPOSE $API_PORT
 
