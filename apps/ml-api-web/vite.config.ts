@@ -8,7 +8,7 @@ const port:number = (process.env.PORT) ? parseInt(process.env.PORT) : 4200;
 const portPreview:number = (process.env.PORT_PREVIEW) ? parseInt(process.env.PORT_PREVIEW) : 4300;
 let API_URL = (process.env.NODE_ENV === 'production') ? "https://api.snapquiz.ai" : "http://localhost:3000";
 if (process.env.API_URL) {
-  API_URL = process.env.API_URL;
+ API_URL = process.env.API_URL;
 }
 console.log(`VITE starting on port:${port} and preview port: ${portPreview}`);
 export default defineConfig({

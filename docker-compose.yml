@@ -1,12 +1,14 @@
 version: '3.9'
 services:
   api:
-    build:
-      context: .
-      dockerfile: ./apps/ml-api/Dockerfile
-      target: production
-      args:
-        API_PORT: 3000
+#    platform: linux/amd64
+    image: registry.digitalocean.com/safekids-ai/sq-models-api
+#    build:
+#      context: .
+#      dockerfile: ./apps/ml-api/Dockerfile
+#      target: production
+#      args:
+#        API_PORT: 3000
     env_file:
         - .env
     command: ["./docker_run_api.sh"]
@@ -14,13 +16,15 @@ services:
       - 3000:3000
 
   web:
-    build:
-      context: .
-      dockerfile: ./apps/ml-api-web/Dockerfile
-      target: production
-      args:
-        API_URL: "http://localhost:3000"
-        WEB_PORT: 4200
+#    platform: linux/amd64
+    image: registry.digitalocean.com/safekids-ai/sq-models-web
+#    build:
+#      context: .
+#      dockerfile: ./apps/ml-api-web/Dockerfile
+#      target: production
+#      args:
+#        API_URL: "http://localhost:3000"
+#        WEB_PORT: 4200
     command: ["./docker_run_web.sh"]
     ports:
       - 3001:4200
