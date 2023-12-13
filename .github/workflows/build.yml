@@ -18,8 +18,8 @@ jobs:
         shell: bash
       - name: Build image web
         run: |
-          chmod +x ../../docker/build_api_prod.sh
-          ../../docker/build_api_prod.sh
+          chmod +x ./docker/build_api_prod.sh
+          ./docker/build_api_prod.sh
         shell: bash
       - name: Install doctl # (callout-3)
         uses: digitalocean/action-doctl@v2
@@ -29,11 +29,11 @@ jobs:
         run: doctl registry login --expiry-seconds 600
       - name: Push api # (callout-5)
         run: |
-          chmod +x ../../docker/push_api.sh
-          ../../docker/push_api.sh
+          chmod +x ./docker/push_api.sh
+          ./docker/push_api.sh
         shell: bash
       - name: Push web
         run: |
-          chmod +x ../../docker/push_web.sh
-          ../../docker/push_web.sh
+          chmod +x ./docker/push_web.sh
+          ./docker/push_web.sh
         shell: bash
