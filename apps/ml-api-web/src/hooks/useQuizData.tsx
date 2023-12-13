@@ -11,7 +11,14 @@ const fetcher = async ([url, text]: Array<string>) => {
 }  
 
 const useQuizData = (url: string, text: string) => {
-  const { data, error } = useSWR([url, text], fetcher);
+  const { data, error } = useSWR([url, text], fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnMount:false,
+    revalidateOnReconnect: false,
+    refreshWhenOffline: false,
+    refreshWhenHidden: false,
+    refreshInterval: 0
+  });
 
   if (error) {
     // Handle error, e.g., show an error message or retry the request.
