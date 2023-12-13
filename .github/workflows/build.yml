@@ -1,47 +1,40 @@
-name: Build and Test
+name: Build and publish to Digital Ocean
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Image version'
+        required: true
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - name: Checkout github repo (+ download lfs dependencies)
-        uses: actions/checkout@v4
+      - name: Checkout the repo # (callout-1)
+        uses: actions/checkout@v2
+      - name: Build image api # (callout-2)
+        run: docker buildx build --platform linux/amd64 \
+          --build-arg API_PORT=3000 \
+          --target production \
+          -f ../../apps/ml-api/Dockerfile \
+          -t registry.digitalocean.com/safekids-ai/sq-models-api \
+          ..
+      - name: Build image web
+        run: docker buildx build --platform linux/amd64 \
+          --build-arg API_URL="https://api.snapquiz.ai" \
+          --build-arg WEB_PORT=4200 \
+          --target production \
+          -f "../../apps/ml-api-web/Dockerfile" \
+          -t registry.digitalocean.com/safekids-ai/sq-models-web \
+          ..
+      - name: Install doctl # (callout-3)
+        uses: digitalocean/action-doctl@v2
         with:
-          lfs: true
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Init git user
-        run: |
-          git config --local user.email "zohranvalliani@gmail.com"
-          git config --local user.name "Release Workflow"
-
-      - name: Checkout LFS objects
-        run: git lfs pull
-
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: latest
-          run_install: false
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build and test
-        run: |
-          npx nx run-many --target=package --all
-          npx nx run-many --target=test --all
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Log in to DO Container Registry # (callout-4)
+        run: doctl registry login --expiry-seconds 600
+      - name: Push api # (callout-5)
+        run: docker push registry.digitalocean.com/safekids-ai/sq-models-api
+      - name: Push web  
+        run: docker push registry.digitalocean.com/safekids-ai/sq-models-web
