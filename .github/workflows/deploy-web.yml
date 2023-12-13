@@ -22,6 +22,6 @@ jobs:
         run: doctl registry login --expiry-seconds 600
       - name: Tag image # (callout-5)
         run:
-          docker tag snapquiz/ml-models-web registry.digitalocean.com/safekids/sq-models-web:latest
+          docker tag snapquiz/ml-models-web registry.digitalocean.com/safekids-ai/sq-models-web:latest
       - name: Push image to DO Container Registry # (callout-6)
         run: docker push registry.digitalocean.com/safekids-ai/sq-models-web:latest
