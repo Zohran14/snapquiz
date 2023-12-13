@@ -13,14 +13,23 @@ jobs:
         uses: actions/checkout@v2
       - name: Build image api # (callout-2)
         run: |
-          chmod +x ./docker/build_web_prod.sh
-          ./docker/build_web_prod.sh
-        shell: bash
+          export DOCKER_BUILDKIT=1
+          docker buildx build --platform linux/amd64 \
+               --build-arg API_PORT=3000 \
+               --target production \
+               -f ./apps/ml-api/Dockerfile \
+               -t registry.digitalocean.com/safekids-ai/sq-models-api \
+               ..
       - name: Build image web
         run: |
-          chmod +x ./docker/build_api_prod.sh
-          ./docker/build_api_prod.sh
-        shell: bash
+          export DOCKER_BUILDKIT=1
+          docker buildx build --platform linux/amd64 \
+                 --build-arg API_URL="https://api.snapquiz.ai" \
+                 --build-arg WEB_PORT=4200 \
+                 --target production \
+                 -f "./apps/ml-api-web/Dockerfile" \
+                 -t registry.digitalocean.com/safekids-ai/sq-models-web \
+                 ..
       - name: Install doctl # (callout-3)
         uses: digitalocean/action-doctl@v2
         with:
@@ -29,11 +38,20 @@ jobs:
         run: doctl registry login --expiry-seconds 600
       - name: Push api # (callout-5)
         run: |
-          chmod +x ./docker/push_api.sh
-          ./docker/push_api.sh
-        shell: bash
+            export DOCKER_BUILDKIT=1       
+            docker buildx build --platform linux/amd64 \
+                   --build-arg API_PORT=3000 \
+                   --target production \
+                   -f ./apps/ml-api/Dockerfile \
+                   -t registry.digitalocean.com/safekids-ai/sq-models-api \
+                   ..
       - name: Push web
         run: |
-          chmod +x ./docker/push_web.sh
-          ./docker/push_web.sh
-        shell: bash
+            export DOCKER_BUILDKIT=1       
+            docker buildx build --platform linux/amd64 \
+                   --build-arg API_URL="https://api.snapquiz.ai" \
+                   --build-arg WEB_PORT=4200 \
+                   --target production \
+                   -f "./apps/ml-api-web/Dockerfile" \
+                   -t registry.digitalocean.com/safekids-ai/sq-models-web \
+                   ..
