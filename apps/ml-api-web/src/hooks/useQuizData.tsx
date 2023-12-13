@@ -12,12 +12,9 @@ const fetcher = async ([url, text]: Array<string>) => {
 
 const useQuizData = (url: string, text: string) => {
   const { data, error } = useSWR([url, text], fetcher, {
+    revalidateIfStale: false,
     revalidateOnFocus: false,
-    revalidateOnMount:false,
-    revalidateOnReconnect: false,
-    refreshWhenOffline: false,
-    refreshWhenHidden: false,
-    refreshInterval: 0
+    revalidateOnReconnect: false
   });
 
   if (error) {
