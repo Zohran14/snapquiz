@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Build image api # (callout-2)
         run: |
-          cd ../../apps/ml-api
           DOCKER_BUILDKIT=0
           docker buildx build --platform linux/amd64 \
                --build-arg API_PORT=3000 \
