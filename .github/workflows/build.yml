@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build image api # (callout-2)
         run: |
-          chmod +x ../../docker/build_web_prod.sh
-          ../../docker/build_web_prod.sh
+          chmod +x ./docker/build_web_prod.sh
+          ./docker/build_web_prod.sh
         shell: bash
       - name: Build image web
         run: |
