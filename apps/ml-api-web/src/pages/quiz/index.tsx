@@ -12,7 +12,7 @@ import {
 } from '@ionic/react';
 import { arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
 import './quiz.css';
-import LoadingPage from '../loading/LoadingPage';
+import LoadingPage from '../loading';
 import useQuizData from '../../hooks/useQuizData';
 import { API_URL } from "../../config";
 

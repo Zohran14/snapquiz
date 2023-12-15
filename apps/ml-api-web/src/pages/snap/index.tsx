@@ -13,7 +13,7 @@ import {
   IonPage,
   IonText,
 } from '@ionic/react';
-import LoadingPage from '../loading/LoadingPage';
+import LoadingPage from '../loading';
 import TakeQuiz from '../quiz';
 
 const ACTIONS = {

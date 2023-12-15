@@ -17,17 +17,18 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect } from 'react-router-dom';
 import Snap from './pages/snap';
+import Home from './pages/home';
 setupIonicReact();
 
-const RedirectSnap = () => {
-  return <Redirect to="/snap" />
-}
+// const RedirectSnap = () => {
+//   return <Redirect to="/snap" />
+// }
 const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route path="/" exact component={RedirectSnap} />
+          <Route path="/" exact component={Home} />
           <Route path="/snap" exact component={Snap} />
         </IonRouterOutlet>
       </IonReactRouter>
