@@ -1,5 +1,7 @@
 
 
+## [0.0.9](https://github.com/Zohran14/snapquiz/compare/0.0.8...0.0.9) (2023-12-15)
+
 ## [0.0.8](https://github.com/Zohran14/snapquiz/compare/0.0.7...0.0.8) (2023-12-13)
 
 ## [0.0.7](https://github.com/Zohran14/snapquiz/compare/0.0.6...0.0.7) (2023-12-13)
