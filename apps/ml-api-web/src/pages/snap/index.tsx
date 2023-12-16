@@ -125,8 +125,9 @@ const Snap = () => {
   const takePicture = async () => {
     dispatch({ type: ACTIONS.SET_ISFETCH, payload: false });
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 80,
       allowEditing: true,
+      width: 1024,
       resultType: CameraResultType.Base64,
     });
 
