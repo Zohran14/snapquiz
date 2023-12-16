@@ -73,7 +73,7 @@ const Home = () => {
             </IonCardHeader>
             <IonCardContent>
               <p>
-                Our AI model not only akes tests, but it also fully perpares you
+                Our AI model not only makes tests, but it also fully perpares you
                 with test-like questions.
               </p>
             </IonCardContent>

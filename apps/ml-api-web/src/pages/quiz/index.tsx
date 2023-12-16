@@ -90,7 +90,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             className={getClassName('a', question.answer, selectedAnswer)}
           >
             <IonRadio slot="start" value="a" mode="md" legacy={true} />
-            <IonLabel className="ion-text-center label-radio">
+            <IonLabel className="ion-text-center label-radio ion-text-wrap">
               {question.a}
             </IonLabel>
           </IonItem>
@@ -98,7 +98,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             className={getClassName('b', question.answer, selectedAnswer)}
           >
             <IonRadio slot="start" value="b" mode="md" legacy={true} />
-            <IonLabel className="ion-text-center label-radio">
+            <IonLabel className="ion-text-center label-radio ion-text-wrap">
               {question.b}
             </IonLabel>
           </IonItem>
@@ -106,7 +106,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             className={getClassName('c', question.answer, selectedAnswer)}
           >
             <IonRadio slot="start" value="c" mode="md" legacy={true} />
-            <IonLabel className="ion-text-center label-radio">
+            <IonLabel className="ion-text-center label-radio ion-text-wrap">
               {question.c}
             </IonLabel>
           </IonItem>
@@ -114,7 +114,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             className={getClassName('d', question.answer, selectedAnswer)}
           >
             <IonRadio slot="start" value="d" mode="md" legacy={true} />
-            <IonLabel className="ion-text-center label-radio">
+            <IonLabel className="ion-text-center label-radio ion-text-wrap">
               {question.d}
             </IonLabel>
           </IonItem>
@@ -122,7 +122,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
             className={getClassName('e', question.answer, selectedAnswer)}
           >
             <IonRadio slot="start" value="e" mode="md" legacy={true} />
-            <IonLabel className="ion-text-center label-radio">
+            <IonLabel className="ion-text-center label-radio ion-text-wrap">
               {question.e}
             </IonLabel>
           </IonItem>
